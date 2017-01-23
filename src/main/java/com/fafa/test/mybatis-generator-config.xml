@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+        location="C:/Users/fafa/.m2/repository/com/oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar" />
+    <context id="mybatisDemoForMysql" targetRuntime="MyBatis3">
+        <!-- 控制注释 -->
+        <commentGenerator>
+            <!-- 是否去除所有自动生成的注释文件 -->
+            <property name="suppressAllComments" value="true" />
+            <!-- 是否去除所有自动生成的文件的时间戳，默认为false -->
+            <property name="suppressDate" value="false" />
+        </commentGenerator>
+        
+        <!-- 控制数据库 -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521/ORCL"
+            userId="fafa" password="oracle" /> 
+
+        <javaTypeResolver>
+            <!-- 把jdbc中的decimal与numberic类型转化为integer类型 -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        
+        <!-- 数据库表对应的model -->
+        <javaModelGenerator targetPackage="com.fafa.test.model"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 控制Model的xmlMapper文件 -->
+        <sqlMapGenerator targetPackage="mapper"
+            targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        
+        <!-- 控制mapper接口 -->
+        <javaClientGenerator targetPackage="com.fafa.test.dao"
+            type="XMLMAPPER" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="methodNameCalculator" value="extended" />
+        </javaClientGenerator>
+        
+        <table tableName="STUDENT" domainObjectName="Student"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        
+    </context>
+</generatorConfiguration>
